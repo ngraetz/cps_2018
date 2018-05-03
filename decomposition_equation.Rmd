@@ -1,0 +1,25 @@
+---
+title: "Tables testing"
+author: "Nick Graetz"
+output: pdf_document
+---
+  
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Load knitr package and settings
+library(knitr)
+library(data.table)
+library(ggplot2)
+library(formatR)
+options(scipen=999)
+#opts_chunk$set(fig.align='center', tidy=TRUE, tidy.opts=list(blank=TRUE, width.cutoff=40), warning=FALSE,message=FALSE)
+#opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+knit_hooks$set(small.mar = function(before, options, envir) {
+    if (before)    par(mar=c(1,1,1,1)+.1)  # smaller margin on top and right
+})
+opts_chunk$set(small.mar=TRUE)
+```
+
+\large
+
+$$D_{x,y} = N_{y,\text{First}} * \frac{N_{x,y,\text{First}}}{N_{y,\text{First}}} * \frac{D_{x,y,\text{First}}}{N_{x,y,\text{First}}} + N_{y,\text{Second}} * \frac{N_{x,y,\text{Second}}}{N_{y,\text{Second}}} * \frac{D_{x,y,\text{Second}}}{N_{x,y,\text{Second}}} + N_{y,\text{Third}} * \frac{N_{x,y,\text{Third}}}{N_{y,\text{Third}}} * \frac{D_{x,y,\text{Third}}}{N_{x,y,\text{Third}}}$$
+

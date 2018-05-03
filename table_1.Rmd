@@ -1,0 +1,96 @@
+---
+title: "Tables testing"
+author: "Nick Graetz"
+output: pdf_document
+header-includes:
+    - \usepackage{caption}
+---
+  
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Load knitr package and settings
+library(knitr)
+library(data.table)
+library(ggplot2)
+library(formatR)
+options(scipen=999)
+#opts_chunk$set(fig.align='center', tidy=TRUE, tidy.opts=list(blank=TRUE, width.cutoff=40), warning=FALSE,message=FALSE)
+#opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+knit_hooks$set(small.mar = function(before, options, envir) {
+    if (before)    par(mar=c(1,1,1,1)+.1)  # smaller margin on top and right
+})
+opts_chunk$set(small.mar=TRUE)
+```
+
+\large
+$D_i | p_i, N_i \thicksim \text{Binomial}(p_i, N_i)$  
+
+$\text{logit}(p_i) = \beta_0 + X_i\beta + \epsilon_B$  
+
+$\epsilon_B \thicksim \text{Besag}(0, \tau)$  
+
+$\beta \thicksim \text{Normal(0,1000)}$  
+
+$\tau \thicksim \text{Gamma}(1,10)$  
+
+\captionsetup[table]{labelformat=empty}
+
+\small
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+library(kableExtra)
+  cov_names <- data.table(variable = c('Male','Female',
+                                           'United States',
+                                           'North Africa and Middle East',      
+                                           'Central America, Caribbean, South America',
+                                           'Mexico',
+                                           'SS Africa',                                 
+                                           'Asia',                               
+                                           'Europe',
+                                           'Other North America',
+                                           'Other',                                  
+                                     'Middle Atlantic',
+                                     'New England',
+                                     'North Central',
+                                     'South Atlantic',
+                                     'South Central',
+                                     'Mountain',
+                                     'Pacific',
+                                     'Metro',
+                                     'Non-metro',
+                                     'Total'),
+                          cov_sort = c(1:21))
+  
+dt <- fread('C:/Users/ngraetz/Documents/Penn/papers/cps_2018/table_1.csv')
+setcolorder(dt, c('variable','first_Black','second_Black','third+_Black',
+                  'first_Asian','second_Asian','third+_Asian',
+                  'first_Hispanic','second_Hispanic','third+_Hispanic',
+                  'first_White','second_White','third+_White'))
+for(m in c('first_Black','second_Black','third+_Black',
+                  'first_Asian','second_Asian','third+_Asian',
+                  'first_Hispanic','second_Hispanic','third+_Hispanic',
+                  'first_White','second_White','third+_White')) {
+  #dt[, (m) := round(get(m),2)]
+  #dt[variable=='Total', (m) := round(get(m))]
+  #dt[, (m) := as.character(get(m))]
+  dt[is.na(get(m)), (m) := '--']
+                   }
+dt <- merge(dt, cov_names, by='variable', all.x=TRUE)
+dt[is.na(cov_sort), cov_sort := 0]
+dt <- dt[order(cov_sort)]
+dt <- dt[variable!='United States',]
+dt[, cov_sort := NULL]
+dt <- dt[, c('variable','first_Black','second_Black','third+_Black',
+                  'first_Asian','second_Asian','third+_Asian',
+                  'first_Hispanic','second_Hispanic','third+_Hispanic'), with = FALSE]
+dt[variable=='Central America, Caribbean, South America', variable := 'Central/South America']
+
+landscape(kable(dt, format = 'latex', booktabs = TRUE, caption = '', col.names = c('',rep(c('First','Second','Third+'), 3)), digits = 2, escape = FALSE) %>%
+   kable_styling(latex_options = c("striped","scale_down"), full_width = T, position = "center", font_size = 8) %>%
+   add_header_above(c(" " = 1, "Black" = 3, "Asian" = 3, "Hispanic" = 3)) %>%
+   group_rows("Age", 1, 10) %>%
+   group_rows("Sex", 11, 12) %>%
+   group_rows("Region of origin", 13, 20) %>%
+   group_rows("Region of residence", 21, 27) %>%
+   group_rows("Metro status", 28, 29) %>%
+   column_spec(column = 1, width = "15em"))
+```
+

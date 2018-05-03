@@ -1,0 +1,51 @@
+---
+title: "Tables testing"
+author: "Nick Graetz"
+output: pdf_document
+---
+  
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Load knitr package and settings
+library(knitr)
+library(data.table)
+library(ggplot2)
+library(formatR)
+options(scipen=999)
+#opts_chunk$set(fig.align='center', tidy=TRUE, tidy.opts=list(blank=TRUE, width.cutoff=40), warning=FALSE,message=FALSE)
+#opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+knit_hooks$set(small.mar = function(before, options, envir) {
+    if (before)    par(mar=c(1,1,1,1)+.1)  # smaller margin on top and right
+})
+opts_chunk$set(small.mar=TRUE)
+```
+
+\large
+$D_i | p_i, N_i \thicksim \text{Binomial}(p_i, N_i)$  
+
+$\text{logit}(p_i) = \beta_0 + X_i\beta + \epsilon_B$  
+
+$\epsilon_B \thicksim \text{Besag}(0, \tau)$  
+
+$\beta \thicksim \text{Normal(0,1000)}$  
+
+$\tau \thicksim \text{Gamma}(1,10)$  
+
+\small
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+library(kableExtra)
+  
+dt <- fread('C:/Users/ngraetz/Documents/Penn/papers/cps_2018/gen_props_by_metro_region.csv')
+dt <- dt[, c('native_by_race','first','second','third+')]
+landscape(kable(dt, format = 'latex', booktabs = TRUE, caption = '', col.names = c('Race','First','Second','Third+'), digits = 2, escape = FALSE) %>%
+   kable_styling(latex_options = c("striped","scale_down"), full_width = T, position = "center", font_size = 8) %>%
+   add_header_above(c(" " = 1, "Generational proportion" = 3)) %>%
+   group_rows("Middle Atlantic", 1, 3) %>%
+   group_rows("Mountain", 4, 6) %>%
+   group_rows("New England", 7, 9) %>%
+   group_rows("North Central", 10, 12) %>%
+   group_rows("Pacific", 13, 15) %>%
+   group_rows("South Atlantic", 16, 18) %>%
+   group_rows("South Central", 19, 21) %>%
+   column_spec(column = 1, width = "15em"))
+```
+

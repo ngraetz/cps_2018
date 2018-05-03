@@ -1,0 +1,188 @@
+---
+title: "Tables testing"
+author: "Nick Graetz"
+output: pdf_document
+header-includes:
+    - \usepackage{caption}
+---
+  
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+# Load knitr package and settings
+library(knitr)
+library(data.table)
+library(ggplot2)
+library(formatR)
+options(scipen=999)
+#opts_chunk$set(fig.align='center', tidy=TRUE, tidy.opts=list(blank=TRUE, width.cutoff=40), warning=FALSE,message=FALSE)
+#opts_chunk$set(tidy.opts=list(width.cutoff=80),tidy=TRUE)
+knit_hooks$set(small.mar = function(before, options, envir) {
+    if (before)    par(mar=c(1,1,1,1)+.1)  # smaller margin on top and right
+})
+opts_chunk$set(small.mar=TRUE)
+```
+
+\large
+$D_i | p_i, N_i \thicksim \text{Binomial}(p_i, N_i)$  
+
+$\text{logit}(p_i) = \beta_0 + X_i\beta + \epsilon_B$  
+
+$\epsilon_B \thicksim \text{Besag}(0, \tau)$  
+
+$\beta \thicksim \text{Normal(0,1000)}$  
+
+$\tau \thicksim \text{Gamma}(1,10)$  
+
+\captionsetup[table]{labelformat=empty}
+
+\small
+```{r, echo=FALSE, eval=TRUE, results='asis'}
+library(kableExtra)
+## Order names
+  cov_names <- data.table(name = c(paste0('as.factor(sex)',c('Female','Male')),
+                                   paste0('gen_f',c('Third+','first','second')),
+                                   paste0('gen_reg_f', c(
+                                           'first_North Africa and Middle East',      
+                                           'first_Central America, Caribbean, South America',
+                                           'first_Mexico',
+                                           'first_SS Africa',                                 
+                                           'first_Asia',                               
+                                           'first_Europe',    
+                                           'first_Other',                                  
+                                           'second_North Africa and Middle East',      
+                                           'second_Central America, Caribbean, South America',
+                                           'second_Mexico',
+                                           'second_SS Africa',                                 
+                                           'second_Asia',                               
+                                           'second_Europe',    
+                                           'second_Other')),
+                                   paste0('region_f', c(
+                                     'Middle Atlantic',
+                                     'New England',
+                                     'North Central',
+                                     'South Atlantic',
+                                     'South Central',
+                                     'Mountain',
+                                     'Pacific')),
+                                   'metro_fMetro',
+                                   'metro_fNon-metro'
+                                   ),
+                          cov_name = c('Male','Female','Third+','First','Second',
+                                           'North Africa and Middle East1',      
+                                           'Central America, Caribbean, South America1',
+                                           'Mexico1',
+                                           'SS Africa1',                                 
+                                           'Asia1',                               
+                                           'Europe1',    
+                                           'Other1',                                  
+                                           'North Africa and Middle East2',      
+                                           'Central America, Caribbean, South America2',
+                                           'Mexico2',
+                                           'SS Africa2',                                 
+                                           'Asia2',                               
+                                           'Europe2',    
+                                           'Other2',
+                                     'Middle Atlantic',
+                                     'New England',
+                                     'North Central',
+                                     'South Atlantic',
+                                     'South Central',
+                                     'Mountain',
+                                     'Pacific',
+                                     'Metro',
+                                     'Non-metro'),
+                          cov_sort = c(1:28))
+
+format_decimals <- function(dt, v) {
+  dt[nchar(get(v))==3, (v) := paste0(get(v),'0')]
+  dt[nchar(get(v))==1, (v) := paste0(get(v),'.00')]
+}
+  
+## Format table data
+pull_table_data <- function(group, string_names = cov_names, outcome) {
+coefs <- readRDS(paste0('C:/Users/ngraetz/Documents/Penn/papers/cps_2018/table_2_', outcome,'_', group, '.rds'))
+coefs[!(name %in% c("Global Moran's I","DIC",'RMSE')), coef := exp(coef)]
+coefs[!(name %in% c('DIC','RMSE')), coef := round(coef, 2)]
+coefs[name == "DIC", coef := round(coef)]
+coefs[name == "RMSE", coef := round(coef, 5)]
+coefs[, coef := as.character(coef)]
+coefs[p <= 0.05, p_coef := paste0(coef, '*')]
+coefs[p <= 0.01, p_coef := paste0(coef, '**')]
+coefs[p <= 0.001, p_coef := paste0(coef, '***')]
+coefs[!is.na(p_coef), coef := p_coef]
+coefs[, p_coef := NULL]
+# format_decimals(coefs, 'coef')
+# coefs[!grepl('-', coef), coef := paste0(' ',coef)]
+# coefs[, model := paste0(model, group)]
+# ## Make uncertainty
+# coefs[, upper := as.character(round(upper,2))]
+# format_decimals(coefs, 'upper')
+# coefs[, lower := as.character(round(lower,2))]
+# format_decimals(coefs, 'lower')
+# coefs[!(name %in% c("Global Moran's I","DIC",'RMSE')), coef := paste0(coef, ' (', lower, '-', upper,')')]
+# coefs[, sig := ifelse(lower > 1 | upper < 1, 1, 0)]
+# coefs[sig==1, coef := paste0(coef,'*')]
+## Add reference groups for dummies
+ref_coefs <- data.table(model = rep(c('Model 1', 'Model 2', 'Model 3'), 4),
+                        name = c(rep('as.factor(sex)Female',3), rep('gen_fThird+',3), rep('as.factor(region_f)Middle Atlantic',3), rep('metro_fMetro',3)),
+                        coef = rep('--', 12))
+coefs <- rbind(coefs, ref_coefs, fill = TRUE)
+## Add year for AR1 models
+# year_coefs <- data.table(model = paste0(c('Model 4','Model 5'), group),
+#                         name = rep('Year', 2),
+#                         coef = rep('--', 2))
+# coefs <- rbind(coefs, year_coefs, fill = TRUE)
+coefs <- merge(coefs, string_names, by='name')
+coefs[, race := group]
+return(coefs)
+}
+coefs <- rbindlist(lapply(c('Black','Asian','Hispanic'), pull_table_data, outcome = 'college'))
+coefs <- dcast(coefs, cov_name ~ model + race, value.var='coef')
+## Fill in any NAs with --
+for(n in names(coefs)) coefs[is.na(get(n)), (n) := '--']
+just_names <- cov_names[!(name %in% c('twhk_pv','twhk_is','twhk_ce','fwp_kt')), c('cov_name','cov_sort')]
+coefs <- merge(coefs, just_names, by='cov_name')
+coefs[, cov := cov_name]
+coefs <- coefs[order(cov_sort)]
+coefs[, cov_sort := NULL]
+coefs[, cov := NULL]
+coefs <- coefs[, c('cov_name', 'Model 1_Black', 'Model 2_Black', 'Model 3_Black', 
+                   'Model 1_Asian', 'Model 2_Asian', 'Model 3_Asian',
+                   'Model 1_Hispanic', 'Model 2_Hispanic', 'Model 3_Hispanic')]
+setcolorder(coefs, c('cov_name', 'Model 1_Black', 'Model 2_Black', 'Model 3_Black', 
+                   'Model 1_Asian', 'Model 2_Asian', 'Model 3_Asian',
+                   'Model 1_Hispanic', 'Model 2_Hispanic', 'Model 3_Hispanic'))
+setnames(coefs, c('cov_name', 'Model 1_Black', 'Model 2_Black', 'Model 3_Black', 
+                   'Model 1_Asian', 'Model 2_Asian', 'Model 3_Asian',
+                   'Model 1_Hispanic', 'Model 2_Hispanic', 'Model 3_Hispanic'),
+         c('cov_name', 'Model1_Black', 'Model2_Black', 'Model3_Black', 
+                   'Model1_Asian', 'Model2_Asian', 'Model3_Asian',
+                   'Model1_Hispanic', 'Model2_Hispanic', 'Model3_Hispanic'))
+
+coefs[, cov_name := gsub('1','',cov_name)]
+coefs[, cov_name := gsub('2','',cov_name)]
+for(m in c('Model1_Black', 'Model2_Black', 'Model3_Black', 
+                   'Model1_Asian', 'Model2_Asian', 'Model3_Asian',
+                   'Model1_Hispanic', 'Model2_Hispanic', 'Model3_Hispanic')) {
+  for(i in 1:6)
+  coefs[nchar(get(m))==i, (m) := paste0(get(m), rep(' ',7-i))]
+                   }
+
+## Make formatted table
+# for(c in c('Model_1Black_all', 'Model_2Black_all', 'Model_3Black_all', 'Model_4Black_all', 'Model_1White_all', 'Model_2White_all', 'Model_3White_all', 'Model_4White_all')) {
+#   coefs[, (c) := cell_spec(get(c), "latex", bold = ifelse(grepl('[*]', get(c)), TRUE, FALSE))]
+#   coefs[, (c) := gsub('[*]','',get(c))]
+# }
+landscape(kable(coefs, format = 'latex', booktabs = TRUE, caption = '', col.names = c('',rep(c('Model 1', 'Model 2', 'Model 3'), 3)), digits = 2, escape = FALSE) %>%
+   kable_styling(latex_options = c("striped"), full_width = T, position = "center", font_size = 8) %>%
+   add_header_above(c(" " = 1, "Black" = 3, "Asian" = 3, "Hispanic" = 3)) %>%
+   add_footnote(c("*** indicates p < 0.001, ** p < 0.01, and * < 0.05.",
+                  "All models control for 5-year age groups and year."), notation='alphabet') %>%
+   group_rows("Sex", 1, 2) %>%
+   group_rows("Generation, grouped", 3, 5) %>%
+   group_rows("First-generation, by origin", 6, 10) %>%
+   group_rows("Second-generation, by origin", 11, 15) %>%
+   group_rows("U.S. Residence", 16, 21) %>%
+   group_rows("Metro status", 22, 23) %>%
+   column_spec(column = 1, width = "15em"))
+```
+

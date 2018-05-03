@@ -1,0 +1,203 @@
+BPL,birth_region,super_birth_region
+"09900           United States, n.s.",UNITED STATES,United States
+                US OUTLYING AREAS/TERRITORIES,UNITED STATES,United States
+10000           American Samoa,UNITED STATES,United States
+10500           Guam,UNITED STATES,United States
+10750           Northern Mariana Islands,UNITED STATES,United States
+11000           Puerto Rico,UNITED STATES,United States
+11500           U.S. Virgin Islands,UNITED STATES,United States
+"12090           U.S. outlying areas, n.s.",UNITED STATES,United States
+                OTHER NORTH AMERICA,,
+15000           Canada,OTHER NORTH AMERICA,Other North America
+16010           Bermuda,OTHER NORTH AMERICA,Other North America
+"19900           North America, n.s.",OTHER NORTH AMERICA,Other North America
+                CENTRAL AMERICA,,
+20000           Mexico,Mexico,Mexico
+21010           Belize/British Honduras,CENTRAL AMERICA,"Central America, Caribbean, South America"
+21020           Costa Rica,CENTRAL AMERICA,"Central America, Caribbean, South America"
+21030           El Salvador,CENTRAL AMERICA,"Central America, Caribbean, South America"
+21040           Guatemala,CENTRAL AMERICA,"Central America, Caribbean, South America"
+21050           Honduras,CENTRAL AMERICA,"Central America, Caribbean, South America"
+21060           Nicaragua,CENTRAL AMERICA,"Central America, Caribbean, South America"
+21070           Panama,CENTRAL AMERICA,"Central America, Caribbean, South America"
+"21090           Central America, n.s.",CENTRAL AMERICA,"Central America, Caribbean, South America"
+                CARIBBEAN,,"Central America, Caribbean, South America"
+26000           West Indies,CARIBBEAN,"Central America, Caribbean, South America"
+25000           Cuba,CARIBBEAN,"Central America, Caribbean, South America"
+26010           Dominican Republic,CARIBBEAN,"Central America, Caribbean, South America"
+26020           Haiti,CARIBBEAN,"Central America, Caribbean, South America"
+26030           Jamaica,CARIBBEAN,"Central America, Caribbean, South America"
+26043           Bahamas,CARIBBEAN,"Central America, Caribbean, South America"
+26044           Barbados,CARIBBEAN,"Central America, Caribbean, South America"
+26054           Dominica,CARIBBEAN,"Central America, Caribbean, South America"
+26055           Grenada,CARIBBEAN,"Central America, Caribbean, South America"
+26060           Trinidad and Tobago,CARIBBEAN,"Central America, Caribbean, South America"
+26065           Antigua and Barbuda,CARIBBEAN,"Central America, Caribbean, South America"
+26070           St. Kitts--Nevis,CARIBBEAN,"Central America, Caribbean, South America"
+26075           St. Lucia,CARIBBEAN,"Central America, Caribbean, South America"
+26080           St. Vincent and the Grenadi,CARIBBEAN,"Central America, Caribbean, South America"
+"26091           Caribbean, n.s.",CARIBBEAN,"Central America, Caribbean, South America"
+                SOUTH AMERICA,,"Central America, Caribbean, South America"
+30000           South America,SOUTH AMERICA,"Central America, Caribbean, South America"
+30005           Argentina,SOUTH AMERICA,"Central America, Caribbean, South America"
+30010           Bolivia,SOUTH AMERICA,"Central America, Caribbean, South America"
+30015           Brazil,SOUTH AMERICA,"Central America, Caribbean, South America"
+30020           Chile,SOUTH AMERICA,"Central America, Caribbean, South America"
+30025           Colombia,SOUTH AMERICA,"Central America, Caribbean, South America"
+30030           Ecuador,SOUTH AMERICA,"Central America, Caribbean, South America"
+30040           Guyana/British Guiana,SOUTH AMERICA,"Central America, Caribbean, South America"
+30050           Peru,SOUTH AMERICA,"Central America, Caribbean, South America"
+30060           Uruguay,SOUTH AMERICA,"Central America, Caribbean, South America"
+30065           Venezuela,SOUTH AMERICA,"Central America, Caribbean, South America"
+30070           Paraguay,SOUTH AMERICA,"Central America, Caribbean, South America"
+"30090           South America, n.s.",SOUTH AMERICA,"Central America, Caribbean, South America"
+"31000           Americas, n.s.",SOUTH AMERICA,"Central America, Caribbean, South America"
+                EUROPE,,
+                Northern Europe,,
+40000           Denmark,Northern Europe,Europe
+40100           Finland,Northern Europe,Europe
+40200           Iceland,Northern Europe,Europe
+40400           Norway,Northern Europe,Europe
+40500           Sweden,Northern Europe,Europe
+                United Kingdom and Ireland:,,Europe
+41000           England,United Kingdom and Ireland:,Europe
+41100           Scotland,United Kingdom and Ireland:,Europe
+41200           Wales,United Kingdom and Ireland:,Europe
+"41300           United Kingdom, n.s.",United Kingdom and Ireland:,Europe
+41400           Ireland,United Kingdom and Ireland:,Europe
+41410           Northern Ireland,United Kingdom and Ireland:,Europe
+                Western Europe,,Europe
+42000           Belgium,Western Europe,Europe
+42100           France,Western Europe,Europe
+42500           Netherlands,Western Europe,Europe
+42600           Switzerland,Western Europe,Europe
+                Southern Europe,,Europe
+43300           Greece,Southern Europe,Europe
+43400           Italy,Southern Europe,Europe
+43600           Portugal,Southern Europe,Europe
+43610           Azores,Southern Europe,Europe
+43800           Spain,Southern Europe,Europe
+                Central/Eastern Europe,,Europe
+45000           Austria,Central/Eastern Europe,Europe
+45200           Czechoslavakia,Central/Eastern Europe,Europe
+45212           Slovakia,Central/Eastern Europe,Europe
+45213           Czech Republic,Central/Eastern Europe,Europe
+45300           Germany,Central/Eastern Europe,Europe
+45400           Hungary,Central/Eastern Europe,Europe
+45500           Poland,Central/Eastern Europe,Europe
+45600           Romania,Central/Eastern Europe,Europe
+45650           Bulgaria,Central/Eastern Europe,Europe
+45675           Albania,Central/Eastern Europe,Europe
+45700           Yugoslavia,Central/Eastern Europe,Europe
+45720           Bosnia and Herzegovina,Central/Eastern Europe,Europe
+45730           Croatia,Central/Eastern Europe,Europe
+45740           Macedonia,Central/Eastern Europe,Europe
+45750           Serbia,Central/Eastern Europe,Europe
+45760           Kosovo,Central/Eastern Europe,Europe
+45770           Montenego,Central/Eastern Europe,Europe
+                Russian Empire:,,Europe
+                Baltic States:,,Europe
+46100           Estonia,Baltic States,Europe
+46200           Latvia,Baltic States,Europe
+46300           Lithuania,Baltic States,Europe
+46500           Other USSR/Russia,Baltic States,Europe
+46530           Ukraine,Baltic States,Europe
+46535           Belarus,Baltic States,Europe
+46540           Moldova,Baltic States,Europe
+"46590           USSR, n.s.",Baltic States,Europe
+"49900           Europe, n.s.",Baltic States,Europe
+                ASIA,,
+                East Asia:,,
+50000           China,East Asia,Asia
+50010           Hong Kong,East Asia,Asia
+50040           Taiwan,East Asia,Asia
+50100           Japan,East Asia,Asia
+50200           Korea,East Asia,Asia
+50220           South Korea,East Asia,Asia
+50300           Mongolia,East Asia,Asia
+                Southeast Asia,,Asia
+51100           Cambodia,Southeast Asia,Asia
+51200           Indonesia,Southeast Asia,Asia
+51300           Laos,Southeast Asia,Asia
+51400           Malaysia,Southeast Asia,Asia
+51500           Philippines,Southeast Asia,Asia
+51600           Singapore,Southeast Asia,Asia
+51700           Thailand,Southeast Asia,Asia
+51800           Vietnam,Southeast Asia,Asia
+                India/Southwest Asia:,,Asia
+52000           Afghanistan,India/Southwest Asia,Asia
+52100           India,India/Southwest Asia,Asia
+52110           Bangladesh,India/Southwest Asia,Asia
+52120           Bhutan,India/Southwest Asia,Asia
+52130           Burma,India/Southwest Asia,Asia
+52140           Pakistan,India/Southwest Asia,Asia
+52150           Sri Lanka,India/Southwest Asia,Asia
+52200           Nepal,India/Southwest Asia,Asia
+                Eurasia:,,Asia
+55100           Armenia,Eurasia,Asia
+55200           Azerbaijan,Eurasia,Asia
+55300           Georgia,Eurasia,Asia
+                Central Asia:,,Asia
+55400           Uzbekistan,Central Asia,Asia
+55500           Kazakhstan,Central Asia,Asia
+                Middle East/Asia Minor:,,
+53000           Iran,Middle East/Asia Minor,North Africa and Middle East
+53200           Iraq,Middle East/Asia Minor,North Africa and Middle East
+53400           Israel,Middle East/Asia Minor,North Africa and Middle East
+53420           Palestine,Middle East/Asia Minor,North Africa and Middle East
+53500           Jordan,Middle East/Asia Minor,North Africa and Middle East
+53700           Lebanon,Middle East/Asia Minor,North Africa and Middle East
+54000           Saudi Arabia,Middle East/Asia Minor,North Africa and Middle East
+54100           Syria,Middle East/Asia Minor,North Africa and Middle East
+54200           Turkey,Middle East/Asia Minor,North Africa and Middle East
+54300           Cyprus,Middle East/Asia Minor,North Africa and Middle East
+54350           Kuwait,Middle East/Asia Minor,North Africa and Middle East
+54400           Yemen,Middle East/Asia Minor,North Africa and Middle East
+54500           United Arab Emirates,Middle East/Asia Minor,North Africa and Middle East
+"54700           Middle East, n.s.",Middle East/Asia Minor,North Africa and Middle East
+"59900           Asia, n.e.c./n.s.",Middle East/Asia Minor,North Africa and Middle East
+                AFRICA,,
+60000           Northern Africa,Africa,North Africa and Middle East
+60010           Northern Africa,Northern Africa,North Africa and Middle East
+60012           Egypt/United Arab Rep.,Northern Africa,North Africa and Middle East
+60014           Morocco,Northern Africa,North Africa and Middle East
+60016           Algeria,Northern Africa,North Africa and Middle East
+60018           Sudan,Northern Africa,North Africa and Middle East
+60019           Libya,Northern Africa,North Africa and Middle East
+                West Africa:,,SS Africa
+60023           Ghana,West Africa,SS Africa
+60031           Nigeria,West Africa,SS Africa
+60032           Cameroon,West Africa,SS Africa
+60033           Cape Verde,West Africa,SS Africa
+60034           Liberia,West Africa,SS Africa
+60035           Senegal,West Africa,SS Africa
+60036           Sierra Leone,West Africa,SS Africa
+60037           Guinea,West Africa,SS Africa
+60038           Ivory Coast,West Africa,SS Africa
+60039           Togo,West Africa,SS Africa
+                East Africa:,,SS Africa
+60040           Eritrea,East Africa,SS Africa
+60044           Ethiopia,East Africa,SS Africa
+60045           Kenya,East Africa,SS Africa
+60050           Somalia,East Africa,SS Africa
+60060           Tanzania,East Africa,SS Africa
+60065           Uganda,East Africa,SS Africa
+60070           Zimbabwe,East Africa,SS Africa
+60094           South Africa (Union of),East Africa,SS Africa
+                Central Africa:,,SS Africa
+60095           Zaire,Central Africa,SS Africa
+60096           Congo,Central Africa,SS Africa
+60097           Zambia,Central Africa,SS Africa
+"60099           Africa, n.s./n.e.c.",Central Africa,SS Africa
+                OCEANIA,,
+                Australia and New Zealand,,
+70010           Australia,OCEANIA,Oceania
+70020           New Zealand,OCEANIA,Oceania
+71000           Pacific Islands,OCEANIA,Oceania
+71021           Fiji,OCEANIA,Oceania
+71022           Tonga,OCEANIA,Oceania
+71023           Samoa,OCEANIA,Oceania
+71024           Marshall Islands,OCEANIA,Oceania
+72000           Micronesia,OCEANIA,Oceania
+"96000           Other, n.e.c. and unknown",OCEANIA,Oceania
+99999           NIU,UNKNOWN,Unknown
