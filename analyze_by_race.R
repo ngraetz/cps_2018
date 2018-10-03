@@ -2,7 +2,7 @@ library(data.table)
 library(ggplot2)
 
 ## Look at differences across self-reported race by generational status.
-cps_mapped <- readRDS('C:/Users/ngraetz/Documents/Penn/papers/cps_2018/cps_mapped.rds')
+cps_mapped <- readRDS('C:/Users/ngraetz/Dropbox/Penn/papers/cps_2018/cps_mapped.rds')
 native_by_race <- copy(cps_mapped)
 native_by_race[, hispan := as.character(hispan)]
 native_by_race[, race := as.character(race)]
